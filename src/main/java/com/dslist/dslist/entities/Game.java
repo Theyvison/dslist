@@ -1,8 +1,13 @@
 package com.dslist.dslist.entities;
 
-import jakarta.persistence.*;
-
 import java.util.Objects;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_game")
@@ -26,7 +31,11 @@ public class Game {
     @Column(columnDefinition = "TEXT")
     private String longDescription;
 
-    public Game(long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl, String shortDescription, String longDescription) {
+    public Game() {
+    }
+
+    public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
+                String shortDescription, String longDescription) {
         this.id = id;
         this.title = title;
         this.year = year;
@@ -34,9 +43,7 @@ public class Game {
         this.platforms = platforms;
         this.score = score;
         this.imgUrl = imgUrl;
-
         this.shortDescription = shortDescription;
-
         this.longDescription = longDescription;
     }
 
@@ -72,11 +79,11 @@ public class Game {
         this.genre = genre;
     }
 
-    public String getPlatform() {
+    public String getPlatforms() {
         return platforms;
     }
 
-    public void setPlatform(String platforms) {
+    public void setPlatforms(String platforms) {
         this.platforms = platforms;
     }
 
@@ -119,15 +126,12 @@ public class Game {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null) {
+        if (obj == null)
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
             return false;
-        }
         Game other = (Game) obj;
         return Objects.equals(id, other.id);
     }
